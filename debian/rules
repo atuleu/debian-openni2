@@ -11,3 +11,16 @@
 
 %:
 	dh $@ 
+
+
+override_dh_auto_clean:
+	dh_auto_clean
+	rm -Rf Bin/
+	rm -Rf Install/
+	rm -Rf Packaging/Final	
+	rm -Rf Packaging/OpenNI-Linux-*
+	rm -Rf Packaging/UpdateVersion.pyc
+	rm -Rf Source/Documentation/Temp/
+	rm -Rf Source/Documentation/html/
+	rm -Rf Source/Documentation/java/
+
