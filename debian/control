@@ -1,23 +1,85 @@
 Source: openni2
-Priority: extra
-Maintainer: Alexandre Tuleu <alexandre.tuleu.2005@polytechnique.org>
-Build-Depends: debhelper (>= 8.0.0)
-Standards-Version: 3.9.2
+Priority: optional
 Section: libs
-Homepage: <insert the upstream URL, if relevant>
-#Vcs-Git: git://git.debian.org/collab-maint/openni2.git
-#Vcs-Browser: http://git.debian.org/?p=collab-maint/openni2.git;a=summary
-
-Package: libopenni2-dev
-Section: libdevel
-Architecture: any
-Depends: openni2BROKEN (= ${binary:Version})
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Maintainer: Alexandre Tuleu <alexandre.tuleu.2005@polytechnique.org>
+Build-Depends: debhelper (>= 8.0.0), freeglut3-dev, libusb-dev (>=
+ 1.0.8), python, doxygen, graphviz, libjpeg-dev, default-jdk
+Standards-Version: 3.9.3
+Section: libs
+Homepage: http://www.openni.org
+Vcs-Browser: http://github.com/atuleu/debian-openni2
 
 Package: libopenni2
 Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Description: framework for sensor-based 'Natural Interaction'
+ OpenNI is a framework for getting data to support 'Natural
+ Interaction', i.e. skeleton tracking, gesture tracking, and similar
+ ways of getting data from humans. OpenNI provides the interface for
+ physical devices and for middleware components. The API enables
+ modules to be registered in the OpenNI framework, which then produce
+ sensory data. OpenNI also allows selection of different hardware and
+ middleware modules.
+
+Package: libopenni2-java
+Section: java
+Architecture: any
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+         libopenni2 (= ${binary:Version})
+Description: Java framework for sensor-based 'Natural Interaction'
+ OpenNI is a framework for getting data to support 'Natural
+ Interaction', i.e. skeleton tracking, gesture tracking, and similar
+ ways of getting data from humans. OpenNI provides the interface for
+ physical devices and for middleware components. The API enables
+ modules to be registered in the OpenNI framework, which then produce
+ sensory data. OpenNI also allows selection of different hardware and
+ middleware modules.
+ .
+ This package provides Java bindings for OpenNI.
+
+Package: libopenni2-dev
+Section: libdevel
+Architecture: any
+Depends: libopenni2 (= ${binary:Version})
+Description: headers for OpenNI 'Natural Interaction' frameworks
+ OpenNI is a framework for getting data to support 'Natural Interaction',
+ i.e. skeleton tracking, gesture tracking, and similar ways of getting data
+ from humans. OpenNI provides the interface for physical devices and for
+ middleware components. The API enables modules to be registered in the OpenNI
+ framework, which then produce sensory data. OpenNI also allows selection of
+ different hardware and middleware modules.
+ .
+ This package provides headers for the OpenNI framework.
+
+Package: libopenni2-dbg
+Section: libdevel
+Architecture: any
+Depends: libopenni2 (= ${binary:Version})
+Recommends: libopenni2-dev
+Description: Debug symbols for OpenNI 'Natural Interaction' frameworks
+ OpenNI is a framework for getting data to support 'Natural Interaction',
+ i.e. skeleton tracking, gesture tracking, and similar ways of getting data
+ from humans. OpenNI provides the interface for physical devices and for
+ middleware components. The API enables modules to be registered in the OpenNI
+ framework, which then produce sensory data. OpenNI also allows selection of
+ different hardware and middleware modules.
+ .
+ This package provides debug symbols for the OpenNI framework.
+
+Package: openni2-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}
+Description: developer documentation for OpenNI frameworks
+ OpenNI is a framework for getting data to support 'Natural Interaction',
+ i.e. skeleton tracking, gesture tracking, and similar ways of getting data
+ from humans. OpenNI provides the interface for physical devices and for
+ middleware components. The API enables modules to be registered in the OpenNI
+ framework, which then produce sensory data. OpenNI also allows selection of
+ different hardware and middleware modules.
+ .
+ This package provides developer documentation for developing using the OpenNI
+ frameworks.
+
