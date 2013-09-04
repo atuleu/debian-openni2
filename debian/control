@@ -8,14 +8,14 @@ Homepage: <insert the upstream URL, if relevant>
 #Vcs-Git: git://git.debian.org/collab-maint/openni2.git
 #Vcs-Browser: http://git.debian.org/?p=collab-maint/openni2.git;a=summary
 
-Package: openni2-dev
+Package: libopenni2-dev
 Section: libdevel
 Architecture: any
 Depends: openni2BROKEN (= ${binary:Version})
 Description: <insert up to 60 chars description>
  <insert long description, indented with spaces>
 
-Package: openni2BROKEN
+Package: libopenni2
 Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
