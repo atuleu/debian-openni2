@@ -1,0 +1,60 @@
+--- a/ThirdParty/PSCommon/BuildSystem/CommonCppMakefile
++++ b/ThirdParty/PSCommon/BuildSystem/CommonCppMakefile
+@@ -83,8 +83,11 @@
+ 	OUTPUT_NAME = lib$(LIB_NAME).so
+ 	ifneq ("$(OSTYPE)","Darwin")
+ 		LDFLAGS += -Wl,--no-undefined
+-		OUTPUT_NAME = lib$(LIB_NAME).so
+-		OUTPUT_COMMAND = $(CXX) -o $(OUTPUT_FILE) $(OBJ_FILES) $(LDFLAGS) -shared
++		ifeq "$(LIB_NAME_SOVERSION)" ""
++			LIB_NAME_SOVERSION=0
++		endif
++		OUTPUT_NAME = lib$(LIB_NAME).so.$(LIB_NAME_SOVERSION)
++		OUTPUT_COMMAND = $(CXX) -o $(OUTPUT_FILE) $(OBJ_FILES) $(LDFLAGS) -shared -Wl,-soname,${OUTPUT_NAME} && cd ${OUT_DIR} && ln -fs ${OUTPUT_NAME} lib$(LIB_NAME).so
+ 	else
+ 		LDFLAGS += -undefined error
+ 		OUTPUT_NAME = lib$(LIB_NAME).dylib
+--- a/Packaging/Harvest.py
++++ b/Packaging/Harvest.py
+@@ -45,12 +45,24 @@
+                 self.platformSuffix = '64'
+                 self.glutSuffix = '64'
+ 
++    def debianCopySharedObject(self, sourceDir, name, targetDir):
++        # shutil.copy(os.path.join(sourceDir, 'lib' + name + '.so'), targetDir)
++        lastFile = ''
++        for f in os.listdir(sourceDir):
++            match = re.search('lib' + name + '\.so\.[0-9\.]+',f)
++            if match:
++                shutil.copy(os.path.join(sourceDir , f), targetDir)
++                lastFile = f
++        os.symlink(os.path.join(targetDir,lastFile),os.path.join(targetDir,'lib' + name + '.so'))
++        if len(lastFile) == 0:
++            raise 'Did not found any file for shared object "' + name + '"'
++
+     def copySharedObject(self, sourceDir, name, targetDir):
+         if self.osName == 'Windows':
+             shutil.copy(os.path.join(sourceDir, name + '.dll'), targetDir)
+             shutil.copy(os.path.join(sourceDir, name + '.pdb'), targetDir)
+         elif self.osName == 'Linux':
+-            shutil.copy(os.path.join(sourceDir, 'lib' + name + '.so'), targetDir)
++            self.debianCopySharedObject(sourceDir, name, targetDir):
+         elif self.osName == 'Darwin':
+             shutil.copy(os.path.join(sourceDir, 'lib' + name + '.dylib'), targetDir)
+         else:
+--- a/Source/Core/Makefile
++++ b/Source/Core/Makefile
+@@ -19,8 +19,12 @@
+ 	LDFLAGS += -framework CoreFoundation -framework IOKit
+ endif
+ 
+-LIB_NAME = OpenNI2
++MAJOR_VERSION = $(shell grep "define ONI_VERSION_MAJOR" ../../Include/OniVersion.h | cut -f 2)
++MINOR_VERSION = $(shell grep "define ONI_VERSION_MINOR" ../../Include/OniVersion.h | cut -f 2)
++
+ 
++LIB_NAME = OpenNI2
++LIB_NAME_SOVERSION=$(MAJOR_VERSION).$(MINOR_VERSION)
+ LIB_DIRS = ../../ThirdParty/PSCommon/XnLib/Bin/$(PLATFORM)-$(CFG)
+ USED_LIBS = XnLib dl pthread
+ ifneq ("$(OSTYPE)","Darwin")
