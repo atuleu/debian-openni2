@@ -1,0 +1,2 @@
+# soname is fine
+libopenni2: package-name-doesnt-match-sonames libOpenNI2.jni0 libOpenNI2-2.2
