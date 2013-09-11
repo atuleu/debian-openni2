@@ -1,0 +1,11 @@
+--- a/Source/Tools/NiViewer/NiViewer.cpp
++++ b/Source/Tools/NiViewer/NiViewer.cpp
+@@ -96,7 +96,7 @@
+ // --------------------------------
+ // Defines
+ // --------------------------------
+-#define SAMPLE_XML_PATH "../../../../Data/SamplesConfig.xml"
++#define SAMPLE_XML_PATH "/etc/openni2/SamplesConfig.xml"
+ 
+ // --------------------------------
+ // Types

@@ -1,3 +1,4 @@
 001_adds_install_target
 002_removes_sse_flags
 003_uses_system_libjpeg
+004_changes_hardcoded_path
