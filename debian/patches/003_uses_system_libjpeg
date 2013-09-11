@@ -1,0 +1,101 @@
+--- a/Source/Core/Makefile
++++ b/Source/Core/Makefile
+@@ -5,14 +5,13 @@
+ INC_DIRS = \
+ 	../../Include \
+ 	../../ThirdParty/PSCommon/XnLib/Include \
+-	../Drivers/OniFile/Formats \
+-	../../ThirdParty/LibJPEG
++	../Drivers/OniFile/Formats
+ 
+ SRC_FILES = \
+ 	*.cpp \
+ 	../Drivers/OniFile/Formats/XnCodec.cpp \
+ 	../Drivers/OniFile/Formats/XnStreamCompression.cpp \
+-	../../ThirdParty/LibJPEG/*.c \
++
+ 
+ ifeq ("$(OSTYPE)","Darwin")
+ 	INC_DIRS += /opt/local/include
+@@ -28,6 +27,13 @@
+         USED_LIBS += rt  
+ endif
+ 
++ifeq ($(shell ld -ljpeg -o /dev/null 1>&2 2> /dev/null; echo $$?), 0)
++	USED_LIBS += jpeg
++else
++	INC_DIRS  += ../../ThirdParty/LibJPEG
++	SRC_FILES += ../../ThirdParty/LibJPEG/*.c
++endif
++
+ DEFINES += OPENNI2_EXPORT
+ 
+ CFLAGS += -Wall
+--- a/Source/Drivers/OniFile/Makefile
++++ b/Source/Drivers/OniFile/Makefile
+@@ -6,14 +6,13 @@
+ 	. \
+ 	../../../Include \
+ 	../../../ThirdParty/PSCommon/XnLib/Include \
+-	../../../ThirdParty/LibJPEG \
+ 	Formats
+ 
+ SRC_FILES = \
+ 	*.cpp \
+ 	Formats/*.cpp \
+-	XnLibExtensions/*.cpp \
+-	../../../ThirdParty/LibJPEG/*.c
++	XnLibExtensions/*.cpp
++
+ 
+ 
+ ifeq ("$(OSTYPE)","Darwin")
+@@ -30,6 +29,14 @@
+         USED_LIBS += rt  
+ endif
+ 
++
++ifeq ($(shell ld -ljpeg -o /dev/null 1>&2 2> /dev/null; echo $$?), 0)
++	USED_LIBS += jpeg
++else
++	INC_DIRS  += ../../../ThirdParty/LibJPEG
++	SRC_FILES += ../../../ThirdParty/LibJPEG/*.c
++endif
++
+ CFLAGS += -Wall
+ 
+ OUT_DIR := $(OUT_DIR)/OpenNI2/Drivers
+--- a/Source/Drivers/PS1080/Makefile
++++ b/Source/Drivers/PS1080/Makefile
+@@ -7,7 +7,6 @@
+ 	Include \
+ 	../../../Include \
+ 	../../../ThirdParty/PSCommon/XnLib/Include \
+-	../../../ThirdParty/LibJPEG \
+ 	../../DepthUtils
+ 
+ SRC_FILES = \
+@@ -16,8 +15,7 @@
+ 	DriverImpl/*.cpp\
+ 	Formats/*.cpp	\
+ 	Include/*.cpp	\
+-	Sensor/*.cpp	\
+-	../../../ThirdParty/LibJPEG/*.c
++	Sensor/*.cpp
+ 
+ 
+ ifeq ("$(OSTYPE)","Darwin")
+@@ -37,6 +35,13 @@
+ 	USED_LIBS += usb-1.0.0
+ endif
+ 
++ifeq ($(shell ld -ljpeg -o /dev/null 1>&2 2> /dev/null; echo $$?), 0)
++	USED_LIBS += jpeg
++else
++	INC_DIRS  += ../../../ThirdParty/LibJPEG
++	SRC_FILES += ../../../ThirdParty/LibJPEG/*.c
++endif
++
+ CFLAGS += -Wall
+ 
+ OUT_DIR := $(OUT_DIR)/OpenNI2/Drivers
