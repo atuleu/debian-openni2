@@ -42,7 +42,7 @@ Description: Java framework for sensor-based 'Natural Interaction'
 Package: libopenni2-dev
 Section: libdevel
 Architecture: any
-Depends: libopenni2 (= ${binary:Version})
+Depends: libopenni2 (= ${binary:Version}), ${misc:Depends}
 Description: headers for OpenNI 'Natural Interaction' frameworks
  OpenNI is a framework for getting data to support 'Natural Interaction',
  i.e. skeleton tracking, gesture tracking, and similar ways of getting data
@@ -57,7 +57,7 @@ Package: libopenni2-dbg
 Section: debug
 Priority: extra
 Architecture: any
-Depends: libopenni2 (= ${binary:Version})
+Depends: libopenni2 (= ${binary:Version}), ${misc:Depends}
 Recommends: libopenni2-dev
 Description: Debug symbols for OpenNI 'Natural Interaction' frameworks
  OpenNI is a framework for getting data to support 'Natural Interaction',
