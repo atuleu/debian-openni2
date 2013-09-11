@@ -1,0 +1,11 @@
+--- a/ThirdParty/PSCommon/BuildSystem/CommonCppMakefile
++++ b/ThirdParty/PSCommon/BuildSystem/CommonCppMakefile
+@@ -97,7 +97,7 @@
+ ifneq "$(EXE_NAME)" ""
+ 	OUTPUT_NAME = $(EXE_NAME)
+ 	# We want the executables to look for the .so's locally first:
+-	LDFLAGS += -Wl,-rpath ./
++	#	LDFLAGS += -Wl,-rpath ./
+ 	OUTPUT_COMMAND = $(CXX) -o $(OUTPUT_FILE) $(OBJ_FILES) $(LDFLAGS)
+ endif
+ ifneq "$(SLIB_NAME)" ""
