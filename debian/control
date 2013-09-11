@@ -2,8 +2,8 @@ Source: openni2
 Priority: optional
 Section: libs
 Maintainer: Alexandre Tuleu <alexandre.tuleu.2005@polytechnique.org>
-Build-Depends: debhelper (>= 8.0.0), freeglut3-dev, libusb-dev (>=
- 1.0.8), python, doxygen, graphviz, libjpeg-dev, default-jdk
+Build-Depends: debhelper (>= 8.0.0), freeglut3-dev, libusb-1.0-0-dev
+ (>= 1.0.8), python, doxygen, graphviz, libjpeg-dev, default-jdk
 Standards-Version: 3.9.3
 Homepage: http://www.openni.org
 Vcs-Browser: http://github.com/atuleu/debian-openni2
