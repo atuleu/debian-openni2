@@ -1,16 +1,18 @@
 --- a/ThirdParty/PSCommon/BuildSystem/CommonCppMakefile
 +++ b/ThirdParty/PSCommon/BuildSystem/CommonCppMakefile
-@@ -83,8 +83,11 @@
+@@ -83,8 +83,13 @@
  	OUTPUT_NAME = lib$(LIB_NAME).so
  	ifneq ("$(OSTYPE)","Darwin")
  		LDFLAGS += -Wl,--no-undefined
 -		OUTPUT_NAME = lib$(LIB_NAME).so
 -		OUTPUT_COMMAND = $(CXX) -o $(OUTPUT_FILE) $(OBJ_FILES) $(LDFLAGS) -shared
 +		ifeq "$(LIB_NAME_SOVERSION)" ""
-+			LIB_NAME_SOVERSION=0
++			OUTPUT_NAME = lib$(LIB_NAME).so.$(LIB_NAME_SOVERSION)
++			OUTPUT_COMMAND = $(CXX) -o $(OUTPUT_FILE) $(OBJ_FILES) $(LDFLAGS) -shared -Wl,-soname,${OUTPUT_NAME} && cd ${OUT_DIR} && ln -fs ${OUTPUT_NAME} lib$(LIB_NAME).so
++		else
++			OUTPUT_NAME = lib$(LIB_NAME).so
++			OUTPUT_COMMAND = $(CXX) -o $(OUTPUT_FILE) $(OBJ_FILES) $(LDFLAGS) -shared
 +		endif
-+		OUTPUT_NAME = lib$(LIB_NAME).so.$(LIB_NAME_SOVERSION)
-+		OUTPUT_COMMAND = $(CXX) -o $(OUTPUT_FILE) $(OBJ_FILES) $(LDFLAGS) -shared -Wl,-soname,${OUTPUT_NAME} && cd ${OUT_DIR} && ln -fs ${OUTPUT_NAME} lib$(LIB_NAME).so
  	else
  		LDFLAGS += -undefined error
  		OUTPUT_NAME = lib$(LIB_NAME).dylib
@@ -58,3 +60,17 @@
  LIB_DIRS = ../../ThirdParty/PSCommon/XnLib/Bin/$(PLATFORM)-$(CFG)
  USED_LIBS = XnLib dl pthread
  ifneq ("$(OSTYPE)","Darwin")
+--- a/Wrappers/java/OpenNI.jni/Makefile
++++ b/Wrappers/java/OpenNI.jni/Makefile
+@@ -13,6 +13,11 @@
+ 
+ LIB_NAME = OpenNI2.jni
+ 
++MAJOR_VERSION = $(shell grep "define ONI_VERSION_MAJOR" ../../Include/OniVersion.h | cut -f 2)
++MINOR_VERSION = $(shell grep "define ONI_VERSION_MINOR" ../../Include/OniVersion.h | cut -f 2)
++
++LIB_NAME_SOVERSION=$(MAJOR_VERSION).$(MINOR_VERSION)
++
+ CFLAGS += -Wall
+ 
+ include ../../../ThirdParty/PSCommon/BuildSystem/CommonCppMakefile
