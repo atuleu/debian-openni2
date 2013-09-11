@@ -1,0 +1,11 @@
+--- a/ThirdParty/PSCommon/BuildSystem/Platform.x86
++++ b/ThirdParty/PSCommon/BuildSystem/Platform.x86
+@@ -2,7 +2,7 @@
+ export GLUT_SUPPORTED=1
+ 
+ ifndef SSE_GENERATION
+-	SSE_GENERATION = 3
++	SSE_GENERATION = 0
+ endif
+ 
+ ifeq ("$(OSTYPE)","Darwin")
