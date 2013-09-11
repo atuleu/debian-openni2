@@ -38,7 +38,7 @@
              shutil.copy(os.path.join(sourceDir, name + '.pdb'), targetDir)
          elif self.osName == 'Linux':
 -            shutil.copy(os.path.join(sourceDir, 'lib' + name + '.so'), targetDir)
-+            self.debianCopySharedObject(sourceDir, name, targetDir):
++            self.debianCopySharedObject(sourceDir, name, targetDir)
          elif self.osName == 'Darwin':
              shutil.copy(os.path.join(sourceDir, 'lib' + name + '.dylib'), targetDir)
          else:
