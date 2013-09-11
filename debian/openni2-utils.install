@@ -1,0 +1,3 @@
+debian/tmp/Tools/NiViewer usr/bin
+debian/tmp/Tools/PS1080Console usr/bin
+debian/tmp/Tools/PSLinkConsole usr/bin

@@ -84,3 +84,18 @@ Description: developer documentation for OpenNI frameworks
  This package provides developer documentation for developing using the OpenNI
  frameworks.
 
+Package: openni2-utils
+Section: utils
+Architecture: any
+Depends: libopenni2 (= ${binary:Version}), ${shlibs:Depends},
+ ${misc:Depends}
+Description: debug and test utilities OpenNI framework
+ OpenNI is a framework for getting data to support 'Natural Interaction',
+ i.e. skeleton tracking, gesture tracking, and similar ways of getting data
+ from humans. OpenNI provides the interface for physical devices and for
+ middleware components. The API enables modules to be registered in the OpenNI
+ framework, which then produce sensory data. OpenNI also allows selection of
+ different hardware and middleware modules.
+ .
+ This package provides a number of related utilities for debugging, testing,
+ and view the results of the sensor modules.
