@@ -18,7 +18,7 @@
  		OUTPUT_NAME = lib$(LIB_NAME).dylib
 --- a/Packaging/Harvest.py
 +++ b/Packaging/Harvest.py
-@@ -45,12 +45,24 @@
+@@ -45,12 +45,25 @@
                  self.platformSuffix = '64'
                  self.glutSuffix = '64'
  
@@ -30,9 +30,10 @@
 +            if match:
 +                shutil.copy(os.path.join(sourceDir , f), targetDir)
 +                lastFile = f
-+        os.symlink(os.path.join(targetDir,lastFile),os.path.join(targetDir,'lib' + name + '.so'))
 +        if len(lastFile) == 0:
-+            raise 'Did not found any file for shared object "' + name + '"'
++            shutil.copy(os.path.join(sourceDir, 'lib' + name + '.so'),targetDir)
++        else:
++            os.symlink(os.path.join(targetDir,lastFile),os.path.join(targetDir,'lib' + name + '.so'))
 +
      def copySharedObject(self, sourceDir, name, targetDir):
          if self.osName == 'Windows':
