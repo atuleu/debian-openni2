@@ -1,1 +1,3 @@
-usr/lib/lib*.so.*
+debian/tmp/Redist/*.so.* usr/lib/
+debian/tmp/Redist/OpenNI2/* usr/lib/OpenNI2/
+debian/tmp/Redist/*.ini usr/lib/

@@ -1,5 +1,4 @@
-usr/include/*
-usr/lib/lib*.a
-usr/lib/lib*.so
-usr/lib/pkgconfig/*
-usr/share/pkgconfig/*
+debian/tmp/Include/* usr/include/openni2/
+debian/tmp/Redist/*.so usr/lib/
+debian/libopenni2.pc usr/lib/pkgconfig/
+
