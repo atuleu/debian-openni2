@@ -23,6 +23,7 @@ override_dh_auto_clean:
 	rm -Rf Source/Documentation/Temp/
 	rm -Rf Source/Documentation/html/
 	rm -Rf Source/Documentation/java/
+	rm -Rf debian/libopenni2.udev
 
 override_dh_strip:
 	dh_strip --dbg-package=libopenni2-dbg
