@@ -1,0 +1,5 @@
+* Fix :
+W: openni2-utils: binary-without-manpage 
+
+* Adds a custom package with sse flags.
+
