@@ -33,7 +33,7 @@
 +        if len(lastFile) == 0:
 +            shutil.copy(os.path.join(sourceDir, 'lib' + name + '.so'),targetDir)
 +        else:
-+            os.symlink(os.path.join(targetDir,lastFile),os.path.join(targetDir,'lib' + name + '.so'))
++            os.symlink(lastFile,os.path.join(targetDir,'lib' + name + '.so'))
 +
      def copySharedObject(self, sourceDir, name, targetDir):
          if self.osName == 'Windows':
