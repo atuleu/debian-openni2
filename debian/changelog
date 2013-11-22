@@ -1,3 +1,9 @@
+openni2 (2.2.0.33~beta2-1~dev2~precise1) precise; urgency=low
+
+  * precise backport
+
+ -- Alexandre Tuleu <alexandre.tuleu.2005@polytechnique.org>  Fri, 22 Nov 2013 16:09:09 +0000
+
 openni2 (2.2.0.33~beta2-1~dev2) unstable; urgency=low
 
   * New upstream version 2.2.0.33~beta2
