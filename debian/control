@@ -6,7 +6,7 @@ Build-Depends: debhelper (>= 8.0.0), freeglut3-dev, libusb-1.0-0-dev
  (>= 1.0.8), python, doxygen, graphviz, libjpeg-dev, default-jdk,
  libudev-dev
 Standards-Version: 3.9.3
-Homepage: http://www.openni.org
+Homepage: http://structure.io/openni
 Vcs-Browser: http://github.com/atuleu/debian-openni2
 
 Package: libopenni2

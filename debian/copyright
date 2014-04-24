@@ -1,6 +1,6 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: openni2
-Source: https://github.com/OpenNI/OpenNI2
+Source: https://github.com/occipital/OpenNI2
 
 Files: *
 Copyright: 2010-2013, PrimeSense Ltd.
