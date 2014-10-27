@@ -1,14 +1,30 @@
-From 4732c253301944826286f99c38fc54ac06b1b956 Mon Sep 17 00:00:00 2001
+From 07fd729df341f9dd640d2bd6903fd143181b7ef6 Mon Sep 17 00:00:00 2001
 From: Joe Burmeister <joe@suaveairapps.co.uk>
-Date: Mon, 27 Oct 2014 15:15:29 +0000
+Date: Mon, 27 Oct 2014 15:41:44 +0000
 Subject: [PATCH] Add ARMhf support.
 
 ---
+ Packaging/Harvest.py                         | 4 +---
  ThirdParty/PSCommon/BuildSystem/Platform.Arm | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ 2 files changed, 2 insertions(+), 4 deletions(-)
 
+diff --git a/Packaging/Harvest.py b/Packaging/Harvest.py
+index 4ce9ed2..018400e 100755
+--- a/Packaging/Harvest.py
++++ b/Packaging/Harvest.py
+@@ -98,9 +98,7 @@ class Harvest:
+             self.copySharedObject(binDriversDir, 'Kinect', targetDriversDir)
+         
+     def copySample(self, samplesDir, name, isLibrary = False, isGL = False, isJava = False):
+-        if self.arch == 'Arm' and isGL:
+-            return
+-            
++
+         sampleTargetDir = os.path.join(samplesDir, name)
+         sampleSourceDir = os.path.join(self.rootDir, 'Samples', name)
+ 
 diff --git a/ThirdParty/PSCommon/BuildSystem/Platform.Arm b/ThirdParty/PSCommon/BuildSystem/Platform.Arm
-index c4a112d..cb7ce32 100644
+index c4a112d..f86af84 100644
 --- a/ThirdParty/PSCommon/BuildSystem/Platform.Arm
 +++ b/ThirdParty/PSCommon/BuildSystem/Platform.Arm
 @@ -1,7 +1,7 @@
