@@ -1,0 +1,25 @@
+From 4732c253301944826286f99c38fc54ac06b1b956 Mon Sep 17 00:00:00 2001
+From: Joe Burmeister <joe@suaveairapps.co.uk>
+Date: Mon, 27 Oct 2014 15:15:29 +0000
+Subject: [PATCH] Add ARMhf support.
+
+---
+ ThirdParty/PSCommon/BuildSystem/Platform.Arm | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/ThirdParty/PSCommon/BuildSystem/Platform.Arm b/ThirdParty/PSCommon/BuildSystem/Platform.Arm
+index c4a112d..cb7ce32 100644
+--- a/ThirdParty/PSCommon/BuildSystem/Platform.Arm
++++ b/ThirdParty/PSCommon/BuildSystem/Platform.Arm
+@@ -1,7 +1,7 @@
+ ifeq "$(CFG)" "Release"
+ 
+     # Hardware specifying flags
+-    CFLAGS += -march=armv7-a -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp #-mcpu=cortex-a8
++    CFLAGS += -march=armv7-a -mtune=cortex-a9 -mfpu=neon #-mfloat-abi=softfp #-mcpu=cortex-a8
+ 
+     # Optimization level, minus currently buggy optimizing methods (which break bit-exact)
+     CFLAGS += -O3 -fno-tree-pre -fno-strict-aliasing
+-- 
+1.9.1
+

@@ -4,3 +4,4 @@
 004_changes_hardcoded_path
 005_adds_a_soname_to_library
 006_removes_rpath
+007-Add-ARMhf-support
