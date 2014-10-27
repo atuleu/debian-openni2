@@ -1,12 +1,13 @@
-From 8958b8838fbc7f6a078bb26ece482224ba6bcb28 Mon Sep 17 00:00:00 2001
+From 42544d57d05bb63655a4c68b9aa18119d716f32d Mon Sep 17 00:00:00 2001
 From: Joe Burmeister <joe@suaveairapps.co.uk>
-Date: Mon, 27 Oct 2014 16:03:28 +0000
+Date: Mon, 27 Oct 2014 16:28:20 +0000
 Subject: [PATCH] Add ARMhf support.
 
 ---
  Packaging/Harvest.py                         | 8 ++------
+ Source/Tools/NiViewer/Makefile               | 2 +-
  ThirdParty/PSCommon/BuildSystem/Platform.Arm | 5 ++++-
- 2 files changed, 6 insertions(+), 7 deletions(-)
+ 3 files changed, 7 insertions(+), 8 deletions(-)
 
 diff --git a/Packaging/Harvest.py b/Packaging/Harvest.py
 index 4ce9ed2..1b60640 100755
@@ -34,6 +35,19 @@ index 4ce9ed2..1b60640 100755
          self.copyExecutable(self.binDir, name, toolsDir)
  
      def copyDocumentation(self, docDir):
+diff --git a/Source/Tools/NiViewer/Makefile b/Source/Tools/NiViewer/Makefile
+index 1eba049..1b5714d 100644
+--- a/Source/Tools/NiViewer/Makefile
++++ b/Source/Tools/NiViewer/Makefile
+@@ -26,7 +26,7 @@ else
+ endif
+ 
+ LIB_DIRS  += ../../../ThirdParty/PSCommon/XnLib/Bin/$(PLATFORM)-$(CFG)
+-USED_LIBS += OpenNI2 XnLib
++USED_LIBS += OpenNI2 XnLib pthread
+ 
+ EXE_NAME = NiViewer
+ 
 diff --git a/ThirdParty/PSCommon/BuildSystem/Platform.Arm b/ThirdParty/PSCommon/BuildSystem/Platform.Arm
 index c4a112d..2484f78 100644
 --- a/ThirdParty/PSCommon/BuildSystem/Platform.Arm
