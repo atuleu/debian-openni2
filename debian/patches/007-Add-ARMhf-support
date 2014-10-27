@@ -16,7 +16,7 @@ index c4a112d..cb7ce32 100644
  
      # Hardware specifying flags
 -    CFLAGS += -march=armv7-a -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp #-mcpu=cortex-a8
-+    CFLAGS += -march=armv7-a -mtune=cortex-a9 -mfpu=neon #-mfloat-abi=softfp #-mcpu=cortex-a8
++    CFLAGS += -Wno-unused-local-typedefs -march=armv7-a -mtune=cortex-a9 -mfpu=neon #-mfloat-abi=softfp #-mcpu=cortex-a8
  
      # Optimization level, minus currently buggy optimizing methods (which break bit-exact)
      CFLAGS += -O3 -fno-tree-pre -fno-strict-aliasing
